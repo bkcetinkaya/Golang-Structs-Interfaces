@@ -28,7 +28,7 @@ func TestWallet(t *testing.T){
 	t.Run("Deposit Check for Euro Account", func(t *testing.T) {
 		//Create euro wallet with 0 Eur and then try to deposit 100 Eur to account and then get the balance amount to check if deposit was successful
 		wallet := EuroWallet{ 0}
-		wallet.DepositBalance(150)
+		DepositBalance(&wallet,100)
 
 		got:=PrintBalance(&wallet)
 		want:= 150
@@ -41,7 +41,7 @@ func TestWallet(t *testing.T){
 	t.Run("Deposit Check for Dollar Account", func(t *testing.T) {
 		//Create dollar wallet with 0 usd and then try to deposit 100 Eur to account and then get the balance amount to check if deposit was successful
 		wallet := DollarWallet{ 0}
-		wallet.DepositBalance(150)
+		DepositBalance(&wallet,100)
 
 		got:=PrintBalance(&wallet)
 		want:= 150

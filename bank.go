@@ -49,8 +49,6 @@ func(dollarWallet *DollarWallet) Withdraw(amount int) error {
 
 }
 
-
-
 func PrintBalance(c Currency) int {
 	return c.CheckBalance()
 }
