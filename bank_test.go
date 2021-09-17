@@ -31,7 +31,6 @@ func TestWallet(t *testing.T){
 		wallet.DepositBalance(150)
 
 		got:=PrintBalance(&wallet)
-
 		want:= 150
 
 		if got!=want{
@@ -45,12 +44,47 @@ func TestWallet(t *testing.T){
 		wallet.DepositBalance(150)
 
 		got:=PrintBalance(&wallet)
-
 		want:= 150
 
 		if got!=want{
 			t.Errorf("we got: %d we wanted: %d",got,want)
 		}
 	})
+
+	t.Run("Withdraw Check for Eur Account", func(t *testing.T) {
+		// Create an eur wallet with 100 in it, and then try to withdraw 50 eur
+		wallet := EuroWallet{ 100}
+		//Since our withdrawal method returns an error we can handle the error if it occurs
+		err := wallet.Withdraw(50)
+		//check if withdraw worked
+		got:=PrintBalance(&wallet)
+		want:= 50
+
+		if err!=nil{
+			t.Error(err)
+			t.Errorf("we got: %d we wanted: %d",got,want)
+		}
+	})
+	t.Run("Withdraw Check for usd Account", func(t *testing.T) {
+		// Create an usd wallet with 100 in it, and then try to withdraw 50 usd
+		wallet := DollarWallet{ 100}
+		//Since our withdrawal method returns an error we can handle the error if it occurs
+		err := wallet.Withdraw(50)
+		//check if withdraw worked
+		got:=PrintBalance(&wallet)
+		want:= 50
+
+		if err!=nil{
+			t.Error(err)
+		}
+
+		if got!=want{
+			t.Errorf("we got: %d we wanted: %d",got,want)
+			t.Errorf("we got: %d we wanted: %d",got,want)
+		}
+	})
+
+
+
 
 }
