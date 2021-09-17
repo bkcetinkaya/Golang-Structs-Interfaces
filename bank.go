@@ -10,6 +10,7 @@ type DollarWallet struct {
 
 type Currency interface{
 	CheckBalance() int
+	DepositBalance(amount int)
 }
 
 func (euroWallet *EuroWallet) CheckBalance() int{
@@ -20,7 +21,18 @@ func(dollarWallet *DollarWallet) CheckBalance() int{
 	return dollarWallet.dollarBalance
 }
 
+func (euroWallet *EuroWallet) DepositBalance(amount int){
+	euroWallet.euroBalance+=amount
+}
+
+func(dollarWallet *DollarWallet) DepositBalance(amount int) {
+	dollarWallet.dollarBalance+=amount
+}
+
 func PrintBalance(c Currency) int {
 	return c.CheckBalance()
 }
 
+func DepositBalance(c Currency,amount int){
+	c.DepositBalance(amount)
+}
